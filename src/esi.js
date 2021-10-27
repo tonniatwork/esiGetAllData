@@ -33,13 +33,8 @@ const esi = {
     return r.data;
   },
   getData: async function (id, instance) {
-    try {
-      const response = await EVEESI.get(`${instance}/${id}`);
-      return response.data;
-    } catch (err) {
-      console.warn(err);
-      throw Error(err);
-    }
+    const response = await EVEESI.get(`${instance}/${id}`);
+    return response.data;
   }
 };
 
