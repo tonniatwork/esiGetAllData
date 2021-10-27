@@ -15,7 +15,7 @@ const language = {
   enum: ["en", "en-us", "de", "fr", "ja", "ru", "ko"]
 };
 
-export const EVEESI = axios.create({
+const EVEESI = axios.create({
   baseURL: "https://" + host + basePath,
   params: {
     [datasource.name]: datasource.default
@@ -27,9 +27,18 @@ export const EVEESI = axios.create({
   httpsAgent
 });
 
-export async function getData(id, instance) {
-  const response = await EVEESI.get(`${instance}/${id}`).catch((err) =>
-    console.warn(err)
-  );
-  return response.data;
-}
+const esi = {
+  marketGroups: EVEESI.get("markets/groups").then((r) => r.data),
+  categories: EVEESI.get("universe/categories").then((r) => r.data),
+  getData: async function (id, instance) {
+    try {
+      const response = await EVEESI.get(`${instance}/${id}`);
+      return response.data;
+    } catch (err) {
+      console.warn(err);
+      throw Error(err);
+    }
+  }
+};
+
+export default esi;

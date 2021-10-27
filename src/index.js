@@ -1,4 +1,8 @@
 import "./styles.css";
-import { EVEESI, getData } from "./esi";
+import esi from "./esi";
 
-document.querySelector("#app").innerHTML = `Test there`;
+const rootElement = document.querySelector("#app");
+
+esi.marketGroups.then(
+  (r) => (rootElement.innerHTML = `Market Groups: ${r.length}`)
+);
