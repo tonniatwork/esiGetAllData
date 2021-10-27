@@ -28,7 +28,7 @@ const EVEESI = axios.create({
 });
 
 const esi = {
-  getMarketGroups: async () => {
+  getMarketGroups: async function () {
     const r = await EVEESI.get("markets/groups");
     return r.data;
   },
