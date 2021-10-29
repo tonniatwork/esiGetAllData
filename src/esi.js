@@ -35,6 +35,10 @@ const esi = {
   getData: async function (id, instance) {
     const response = await EVEESI.get(`${instance}/${id}`);
     return response.data;
+  },
+  getSDE: async function (url) {
+    const r = await axios.get(url);
+    return r.data;
   }
 };
 
