@@ -23,12 +23,11 @@ const normalizeArray = (arr, key) => {
 Promise.all([
   esi.getMarketGroups(),
   esi.getSDE("https://sde.zzeve.com/eveIcons.json"),
-  esi.getSDE("https://sde.zzeve.com/invMarketGroups.json"),
-  esi.getSDE("https://sde.zzeve.com/invTypes.json")
+  esi.getSDE("https://sde.zzeve.com/invMarketGroups.json")
 ]).then((data) => {
   let chunkSize = 20;
   for (let i = 0; i < data[0].length; i += chunkSize) {}
-  console.log(data);
+
   console.log(normalizeArray(data[1], "iconID"));
 });
 
